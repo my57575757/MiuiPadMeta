@@ -14,11 +14,8 @@ object MIUIHotkeyHooksAndroid11 : BaseHook() {
                 name == "interceptKeyBeforeDispatching"
             }.hookBefore { param ->
                 run {
-                    val arg1: KeyEvent = param.args[1] as KeyEvent;
+//                    val arg1: KeyEvent = param.args[1] as KeyEvent;
                     // alt-tab
-                    if ((arg1.isAltPressed && arg1.keyCode == 61)) {
-                        param.result = 0L;
-                    }
                 }
             }
 

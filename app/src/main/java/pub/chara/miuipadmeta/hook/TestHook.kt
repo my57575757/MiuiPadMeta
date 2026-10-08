@@ -4,6 +4,7 @@ import android.view.KeyEvent
 import com.github.kyuubiran.ezxhelper.utils.findMethod
 import com.github.kyuubiran.ezxhelper.utils.hookBefore
 import com.github.kyuubiran.ezxhelper.utils.hookReturnConstant
+import pub.chara.miuipadmeta.tools
 
 class TestHook:BaseHook() {
     override fun init() {
@@ -17,7 +18,7 @@ class TestHook:BaseHook() {
             run {
                 val arg1: KeyEvent = param.args[1] as KeyEvent;
                 // meta key and alt-tab 两个放同一个hook函数里 少用一个hook函数 提高一点性能
-                if ((arg1.isMetaPressed) || (arg1.isAltPressed && arg1.keyCode == 61)) {
+                if (arg1.isMetaPressed) {
                     param.result = 0L;
                 }
             }

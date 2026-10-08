@@ -4,7 +4,8 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = 34
+    buildToolsVersion = "35.0.0"
 
     defaultConfig {
         applicationId = "pub.chara.miuipadmeta"

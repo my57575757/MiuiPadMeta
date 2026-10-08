@@ -1,5 +1,16 @@
 # MiuiPadMeta
 
+> ## 本仓库改动说明（Fork）
+>
+> 本仓库 fork 自原项目 **[CwithW/MiuiPadMeta](https://github.com/CwithW/MiuiPadMeta)**，原模块功能与版权归原作者所有。
+>
+> 在此基础上新增：**串流时仅在月光串流（包名前缀 `com.limelight`）处于前台时**放行被 HyperOS/MIUI 拦截的键盘快捷键，使其透传到串流的 PC，而平时系统快捷键完全不受影响。改动集中在 `app/src/main/java/pub/chara/miuipadmeta/hook/MIUIHotkeyHooksAndroid12.kt`：
+>
+> - `KeyCombinationManager.interceptKey / isKeyConsumed` → 月光前台时返回 `false`，放行 **Win+D** 等所有 MIUI 组合键（它们原本在入队前被消费，早于辅助功能）。
+> - `interceptKeyBeforeDispatching` → 月光前台且为 **META 单键 / Alt+Tab / Win+Tab** 时返回 `0`，不再触发系统 Dock / 最近任务。
+>
+> 配合 **月光串流（Moonlight 的阿西西定制版 `moonlight-android-my`，B 站 UP 主「阿西西的日常」）** 的物理键盘无障碍服务使用：需在系统无障碍中开启「月光·阿西西物理键盘」，并关闭串流菜单里的「ESC 呼出游戏菜单」。已在 HyperOS + 触点键盘套上实测 **单按 Win、Win+D、Alt+Tab、ESC** 均正确送达 PC。
+
 为MIUI设备恢复键盘Meta/Win键功能（禁用掉小米的快捷键），同时禁用Alt-Tab快捷键。这样就可以在远程桌面里用Meta键和Alt-Tab了。适配小米平板5系列以及Android12+的MIUI手机。
 
 Restore Meta/Win key function on MIUI devices(disable Xiaomi hotkeys), and disable Alt-Tab hotkey. Allows you to use Meta and Alt-Tab key in Remote Desktop。Adapted for Xiaomi Pad 5 Series and MIUI phones with Android12+.
